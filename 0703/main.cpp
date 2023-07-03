@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <math.h>
 
-#define TOTAL 2000 // total number of steps
-#define OUTSTEP 10 // output position data every OUTSTEP
+#define TOTAL 10000 // total number of steps
+#define OUTSTEP 10  // output position data every OUTSTEP
 int NSITE;
 
 typedef struct
@@ -86,7 +86,7 @@ double calc_dist() //======= 経路の全長を求める
 
 double myrand() //======================== [0,1] の一様乱数生成
 {
-  return rand() / (double)(RAND_MAX);
+  return (double)rand() / (RAND_MAX);
 }
 
 void exchange(int i, int j) //=====================================
@@ -107,7 +107,7 @@ int main() //=====================================================
 {
   int step = 0;
   int i, j, n;
-  double T = 10000;
+  double T = 100;
   double distance, dtemp;
   FILE *fdist;
 
@@ -142,11 +142,11 @@ int main() //=====================================================
     }
     else
     { // 交換すると距離が増加したので元に戻す
-      if (myrand() < exp(-(dtemp - distance) / T))
-      {
-        distance = dtemp;
-      }
-      else
+      // if (myrand() < exp(-(dtemp - distance) / T))
+      // {
+      //   distance = dtemp;
+      // }
+      // else
       {
         exchange(i, j);
       }
