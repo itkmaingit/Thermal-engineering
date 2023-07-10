@@ -142,11 +142,11 @@ int main() //=====================================================
     }
     else
     { // 交換すると距離が増加したので元に戻す
-      // if (myrand() < exp(-(dtemp - distance) / T))
-      // {
-      //   distance = dtemp;
-      // }
-      // else
+      if (myrand() < exp(-(dtemp - distance) / T))
+      {
+        distance = dtemp;
+      }
+      else
       {
         exchange(i, j);
       }
@@ -156,7 +156,7 @@ int main() //=====================================================
       T *= 0.5;
     }
 
-    // printf("%10d %12.6f\n", step, distance);
+    printf("%10d %12.6f %f\n", step, distance);
     fprintf(fdist, "%10d %12.6f\n", step, distance);
     if (step % OUTSTEP == 0)
     { // OUTSTEP ごとに経路データを出力
